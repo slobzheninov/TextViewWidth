@@ -106,6 +106,9 @@ class TextViewWidth (PalettePlugin):
 
 				if width:
 					Glyphs.intDefaults["GSFontViewWidth"] = int(width)
+			# show current width value as the placeholder
+			elif Glyphs.intDefaults["GSFontViewWidth"]:
+				self.paletteView.group.editText.setPlaceholder( str(Glyphs.intDefaults["GSFontViewWidth"]) )
 
 
 	@objc.python_method
