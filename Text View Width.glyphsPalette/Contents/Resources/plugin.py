@@ -98,7 +98,7 @@ class TextViewWidth (PalettePlugin):
 								print('Text View Width plugin error:\nGlyph %s (%s) has 0 width' % (glyph.name, master.name))
 								Glyphs.showMacroWindow()
 						else:
-							print('Text View Width plugin input error:\nGlyph %s not found' % glyph.name)
+							print('Text View Width plugin input error:\nGlyph %s not found' % userInputSplitted[1])
 							Glyphs.showMacroWindow()
 					else:
 						print('Text View Width plugin input error:\nExpected input example: "12000" (in units) or "10 n" (10 times width of glyph n) or empty')
