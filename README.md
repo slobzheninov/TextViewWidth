@@ -13,7 +13,7 @@ The plugin uses the following format of the input: '20 H' or '15 space' etc., wh
 
 
 You can also set the width in units (the same way as you do in Glyphs preferences), in this case simply insert a number.
-To turn the plugin off, leave the input empty.
+To turn the plugin off, leave the input empty. When empty, it shows the current value as the placeholder.
 
 
 ## Known issues
