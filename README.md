@@ -1,6 +1,7 @@
 # TextViewWidth
+
  
-Text View Width is a Glyphs app palette plugin that allows to set the Text View width relative to the width of a given glyph (20 times width of glyph H, for example). This means that the line breaks will appear about the same for all masters. The plugin dynamically updates the width.
+Text View Width is a Glyphs app palette plugin that allows you to set the Text View width either with a slider or relative to the width of a given glyph (20 times width of glyph H, for example). It helps to avoid reflowing of the text when you switch between masters.
 
 ![TextViewWidth](https://user-images.githubusercontent.com/60325634/126040629-1d7e1890-9a84-436c-bcf1-943570d3b08c.png)
 
@@ -8,17 +9,15 @@ Text View Width is a Glyphs app palette plugin that allows to set the Text View 
 ## Usage
 
 The plugin uses the following format of the input: '20 H' or '15 space' etc., which means 20 times width of glyph H or 15 times the width of the space glyph.
-
-![image](https://user-images.githubusercontent.com/60325634/126040652-b8e1c324-b403-41e0-b6b3-3f8f49397dca.png)
-
-
-You can also set the width in units (the same way as you do in Glyphs preferences), in this case simply insert a number.
+You can also change the with simply with the slider or input a number value.
 To turn the plugin off, leave the input empty. When empty, it shows the current value as the placeholder.
+
+<img width="300" alt="Screen Shot 2022-01-06 at 18 10 07" src="https://user-images.githubusercontent.com/60325634/148466397-f9b16192-05a9-408d-888c-26b64ca10f6e.png">
 
 
 ## Known issues
 
-When you change masters, for a second you see an extra frame before it applies the new width. Which is of course annoying, WIP.
+When you change masters, for a second you see an extra frame before it applies the new width. I don’t know exactly what causes it, seems like that’s how Glyphs applies changes.
 
 
 # License
