@@ -28,7 +28,7 @@ class TextViewWidth (PalettePlugin):
 		self.paletteView.group.slider = Slider((M*7, 0, -M, M*2),
 						callback=self.sliderCallback,
 						minValue=1000,
-						maxValue=50000,
+						maxValue=30000,
 						sizeStyle = 'small')
 		self.dialog = self.paletteView.group.getNSView()
 
