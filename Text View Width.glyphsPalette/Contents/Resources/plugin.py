@@ -86,43 +86,44 @@ class TextViewWidth (PalettePlugin):
 
 	@objc.python_method
 	def updateWidth(self, font):
+		if not font:
+			return
+
 		userInput = self.loadPreferences()
-		if font:
-			if userInput:
-				width = None
+		if not userInput:
+			self.paletteView.group.editText.setPlaceholder(str(Glyphs.intDefaults["GSFontViewWidth"]))
+			return 
+		
+		width = None
 
-				userInputSplitted = str(userInput).split(" ")
-				# int input or slider
-				if len(userInputSplitted) == 1 and userInputSplitted[0].isnumeric():
-					width = int(userInput)
+		userInputSplitted = str(userInput).split(" ")
+		# int input or slider
+		if len(userInputSplitted) == 1 and userInputSplitted[0].isnumeric():
+			width = int(userInput)
 
-				# input in characters (10 n)
-				elif len(userInputSplitted) > 1 and userInputSplitted[0].isnumeric() and userInputSplitted[1].isalpha():
-					if userInputSplitted[1] in font.glyphs:
-						glyph = font.glyphs[userInputSplitted[1]]
-						times = float(userInputSplitted[0])
-						master = font.selectedFontMaster
-						if glyph.layers[master.id].width > 0:
-							width = times * glyph.layers[master.id].width
-						else:
-							print('Text View Width plugin input error:\nGlyph %s (%s) has 0 width' % (glyph.name, master.name))
-							Glyphs.showMacroWindow()
-					else:
-						print('Text View Width plugin input error:\nGlyph %s not found' % userInputSplitted[1])
-						Glyphs.showMacroWindow()
+		# input in characters (10 n)
+		elif len(userInputSplitted) > 1 and userInputSplitted[0].isnumeric() and userInputSplitted[1].isalpha():
+			if userInputSplitted[1] in font.glyphs:
+				glyph = font.glyphs[userInputSplitted[1]]
+				times = float(userInputSplitted[0])
+				master = font.selectedFontMaster
+				if glyph.layers[master.id].width > 0:
+					width = times * glyph.layers[master.id].width
 				else:
-					print('Text View Width plugin input error:\nExpected input example: "12000" (in units) or "10 n" (10 times width of glyph n) or empty')
+					print('Text View Width plugin input error:\nGlyph %s (%s) has 0 width' % (glyph.name, master.name))
 					Glyphs.showMacroWindow()
+			else:
+				print('Text View Width plugin input error:\nGlyph %s not found' % userInputSplitted[1])
+				Glyphs.showMacroWindow()
+		else:
+			print('Text View Width plugin input error:\nExpected input example: "12000" (in units) or "10 n" (10 times width of glyph n) or empty')
+			Glyphs.showMacroWindow()
 
-				if width:
-					Glyphs.intDefaults["GSFontViewWidth"] = int(width)
+		if width:
+			Glyphs.intDefaults["GSFontViewWidth"] = int(width)
 
-					# set slider position
-					self.paletteView.group.slider.set(int(width))
-
-			# show current value as the placeholder
-			elif Glyphs.intDefaults["GSFontViewWidth"]:
-				self.paletteView.group.editText.setPlaceholder(str(Glyphs.intDefaults["GSFontViewWidth"]))
+			# set slider position
+			self.paletteView.group.slider.set(int(width))
 
 	@objc.python_method
 	def __file__(self):
