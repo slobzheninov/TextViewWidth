@@ -48,7 +48,11 @@ class TextViewWidth (PalettePlugin):
 	def loadPreferences(self):
 		try:
 			# set edit text
-			self.paletteView.group.editText.set(str(Glyphs.defaults["com.slobzheninov.textEditWidth"]))
+			value = Glyphs.defaults["com.slobzheninov.textEditWidth"]
+			if value:
+				self.paletteView.group.editText.set(str(value))
+			else:
+				self.paletteView.group.editText.setPlaceholder(str(Glyphs.intDefaults["GSFontViewWidth"]))
 
 			return Glyphs.defaults["com.slobzheninov.textEditWidth"]
 		except:
@@ -91,7 +95,6 @@ class TextViewWidth (PalettePlugin):
 
 		userInput = self.loadPreferences()
 		if not userInput:
-			self.paletteView.group.editText.setPlaceholder(str(Glyphs.intDefaults["GSFontViewWidth"]))
 			return 
 		
 		width = None
